@@ -18,20 +18,15 @@ namespace aehc;
 /// </summary>
 public partial class ConsumerDialogWindow : Window
 {
-    public string ConnectionString;
-    public string Path;
-    public string ConsumerGroup = "$Default";
-
     public ConsumerDialogWindow()
     {
         InitializeComponent();
+        consumerGroupTextBox.Text = "$Default";
     }
 
     private void Click_OkButton(
         object sender,
         RoutedEventArgs e
-    )
-    {
-
-    }
+    ) =>  DialogResult = true;
+    
 }

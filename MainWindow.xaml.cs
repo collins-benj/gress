@@ -10,6 +10,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Azure.Messaging.EventHubs.Consumer;
 
 namespace aehc;
 
@@ -33,7 +34,17 @@ public partial class MainWindow : Window
         RoutedEventArgs e
     )
     {
-        await SendEvent();
+        var eventJson = $@"{{
+    ""hello"": ""world"",
+    ""PublishedTime"": {DateTimeOffset.Now}
+}}";
+
+        await SendSingleEvent(
+            new EventData()
+            {
+                EventBody = new BinaryData(eventJson)
+            }
+        );
     }
 
     public async void Click_StartConsumer(
@@ -42,27 +53,32 @@ public partial class MainWindow : Window
     )
     {
         var dialog = new ConsumerDialogWindow();
-        dialog.ShowDialog();
+
+        if (!dialog.ShowDialog() ?? false) return;
+        
+        var consumerClient = new EventHubConsumerClient(
+            dialog.consumerGroupTextBox.Text,
+            dialog.connectionStringTextBox.Text,
+            dialog.hubNameTextBox.Text
+        );
+
+        var consumeWindow = new ConsumeWindow(
+            consumerClient
+        );
+
+        consumeWindow.Show();
     }
 
-    public async Task SendEvent(
+    public async Task SendSingleEvent(
+        EventData event_,
         CancellationToken cancellationToken = default
     )
     {
-        var eventJson = $@"{{
-    ""hello"": ""world"",
-    ""PublishedTime"": {DateTimeOffset.Now}
-}}";
-
-        var eventData = new EventData()
-        {
-            EventBody = new BinaryData(eventJson)
-        };
 
         await producerClient.SendAsync(
             new[]
             {
-            eventData
+                event_
             },
             cancellationToken
         );
