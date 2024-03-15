@@ -24,29 +24,6 @@ public partial class MainWindow : Window
         InitializeComponent();
     }
 
-    EventHubProducerClient producerClient = new EventHubProducerClient(
-        "Endpoint=sb://aehc-testing.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=e8lSG9bXhEENRk+AGBcOF1lOaMjkAVAUb+AEhHcwYvo=",
-        "0"
-    );
-
-    public async void Click_SendEvent(
-        object sender,
-        RoutedEventArgs e
-    )
-    {
-        var eventJson = $@"{{
-    ""hello"": ""world"",
-    ""PublishedTime"": {DateTimeOffset.Now}
-}}";
-
-        await SendSingleEvent(
-            new EventData()
-            {
-                EventBody = new BinaryData(eventJson)
-            }
-        );
-    }
-
     public async void Click_StartConsumer(
         object sender,
         RoutedEventArgs e
@@ -88,22 +65,6 @@ public partial class MainWindow : Window
         );
 
         consumeWindow.Show();
-    }
-
-    public async Task SendSingleEvent(
-        EventData event_,
-        CancellationToken cancellationToken = default
-    )
-    {
-
-        await producerClient.SendAsync(
-            new[]
-            {
-                event_
-            },
-            cancellationToken
-        );
-
     }
 
 }
