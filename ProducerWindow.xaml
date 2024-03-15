@@ -6,20 +6,24 @@
         xmlns:local="clr-namespace:aehc"
         mc:Ignorable="d"
         Title="Consume Events"
-        Height="450"
-        Width="800">
+        MinHeight="450"
+        MinWidth="800">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="73*"/>
             <ColumnDefinition Width="327*"/>
         </Grid.ColumnDefinitions>
-        <ListBox 
+        <TextBox Name="fullyQualifiedNameSpaceBox" Grid.ColumnSpan="2" Margin="18,15,199,394"></TextBox>
+        <TextBox
+            Name="eventBodyBox"
             Grid.ColumnSpan="2" 
-            Margin="0,0,217,117"
-            ItemsSource="{Binding}" 
+            Margin="18,58,199,120"
             ScrollViewer.VerticalScrollBarVisibility="Visible">
-
-        </ListBox>
+        </TextBox>
+        <StackPanel Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="4" Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button Name="okButton" Click="Click_OkButton" IsDefault="True">OK</Button>
+            <Button Name="cancelButton" IsCancel="True">Cancel</Button>
+        </StackPanel>
     </Grid>
 
 </Window>

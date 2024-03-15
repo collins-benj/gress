@@ -1,23 +1,24 @@
 ﻿using Azure.Messaging.EventHubs.Consumer;
+using Azure.Messaging.EventHubs.Producer;
 using System.Windows;
 using System.Windows.Controls;
 
 namespace aehc;
 
 /// <summary>
-/// Interaction logic for ConsumeWindow.xaml
+/// Interaction logic for ProducerWindow.xaml
 /// </summary>
 public partial class ProducerWindow : Window
 {
-    private readonly EventHubConsumerClient ConsumerClient;
-
+    private readonly EventHubProducerClient ProducerClient;
 
     public ProducerWindow(
-        EventHubConsumerClient consumerClient
+        EventHubProducerClient producerClient
     )
     {
-        ConsumerClient = consumerClient;
+        ProducerClient = producerClient;
         InitializeComponent();
+        fullyQualifiedNameSpaceBox.Text = producerClient.FullyQualifiedNamespace;
     }
 
 }

@@ -12,7 +12,7 @@
         <Button 
             Margin="180,179,480,179" 
             Content="Send"
-            Click="Click_SendEvent">
+            Click="Click_StartProducer">
             
         </Button>
         <Button 

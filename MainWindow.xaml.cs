@@ -69,6 +69,27 @@ public partial class MainWindow : Window
         consumeWindow.Show();
     }
 
+    public async void Click_StartProducer(
+        object sender,
+        RoutedEventArgs e
+    )
+    {
+        var dialog = new ProducerDialogWindow();
+
+        if (!dialog.ShowDialog() ?? false) return;
+
+        var producerClient = new EventHubProducerClient(
+            dialog.connectionStringTextBox.Text,
+            dialog.hubNameTextBox.Text
+        );
+
+        var consumeWindow = new ProducerWindow(
+            producerClient
+        );
+
+        consumeWindow.Show();
+    }
+
     public async Task SendSingleEvent(
         EventData event_,
         CancellationToken cancellationToken = default
