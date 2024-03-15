@@ -62,7 +62,7 @@ public partial class MainWindow : Window
             dialog.hubNameTextBox.Text
         );
 
-        var consumeWindow = new ConsumeWindow(
+        var consumeWindow = new ConsumerWindow(
             consumerClient
         );
 

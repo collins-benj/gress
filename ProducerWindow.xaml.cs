@@ -7,25 +7,17 @@ namespace aehc;
 /// <summary>
 /// Interaction logic for ConsumeWindow.xaml
 /// </summary>
-public partial class ConsumeWindow : Window
+public partial class ProducerWindow : Window
 {
     private readonly EventHubConsumerClient ConsumerClient;
 
 
-    public ConsumeWindow(
+    public ProducerWindow(
         EventHubConsumerClient consumerClient
     )
     {
         ConsumerClient = consumerClient;
         InitializeComponent();
-    }
-
-    public async void Click_Start(
-        object sender,
-        RoutedEventArgs e
-    )
-    {
-
     }
 
 }

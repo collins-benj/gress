@@ -16,12 +16,11 @@ namespace aehc;
 /// <summary>
 /// Interaction logic for ConsumerDialogWindow.xaml
 /// </summary>
-public partial class ConsumerDialogWindow : Window
+public partial class ProducerDialogWindow : Window
 {
-    public ConsumerDialogWindow()
+    public ProducerDialogWindow()
     {
         InitializeComponent();
-        consumerGroupTextBox.Text = "$Default";
     }
 
     private void Click_OkButton(
