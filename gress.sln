@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34701.34
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "gress", "gress.csproj", "{F5483A88-6E67-4B83-BA3C-BD6412181A28}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "gress", "src\gress\gress.csproj", "{F5483A88-6E67-4B83-BA3C-BD6412181A28}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "gress.test", "test\gress.test\gress.test.csproj", "{47C9ABED-73FF-4013-B6D8-FFC92AC8C8C7}"
 EndProject
