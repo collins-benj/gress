@@ -1,5 +1,6 @@
 ﻿using Azure.Messaging.EventHubs.Producer;
 using CommunityToolkit.Maui.Alerts;
+using CommunityToolkit.Maui.Core.Views;
 using CommunityToolkit.Maui.Views;
 
 namespace gress
@@ -36,18 +37,18 @@ namespace gress
                     )
                 );
             }
-            // malformed connection string
             catch(Exception ex)
             {
-                var toast = Toast.Make(
-                    "Connection String & Hub Name are required."
+                //SemanticScreenReader.Announce(ex.Message);
+
+                // https://learn.microsoft.com/en-us/dotnet/maui/user-interface/pop-ups?view=net-maui-8.0#display-an-alert
+                await DisplayAlert(
+                    "Malformed Connection Info",
+                    ex.Message,
+                    "OK"
                 );
 
-                await toast.Show();
             }
-
-
-            //SemanticScreenReader.Announce(CounterBtn.Text);
         }
     }
 

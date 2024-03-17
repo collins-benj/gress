@@ -10,9 +10,50 @@
             Spacing="25">
 
             <Label
-                Text="Producer Goes Here!"
+                Text="Send an Event"
                 Style="{StaticResource Headline}"
                 SemanticProperties.HeadingLevel="Level1" />
+
+            <Label
+                Text="Event Body"/>
+
+            <!--https://learn.microsoft.com/en-us/dotnet/maui/user-interface/controls/entry?view=net-maui-8.0#create-an-entry-->
+            <Editor x:Name="eventBodyInput"
+                Placeholder="Enter text"
+                AutoSize="TextChanges"/>
+
+            <Label
+                Text="Content Type"/>
+
+            <Picker x:Name="contentTypePicker"
+                    />
+
+            <Label
+                Text="Partition Key"/>
+            
+            <Entry x:Name="partitionKeyInput"
+                Placeholder="Enter text"/>
+
+            <!--https://learn.microsoft.com/en-us/dotnet/maui/user-interface/layouts/verticalstacklayout?view=net-maui-8.0#nest-verticalstacklayout-objects-->
+            <HorizontalStackLayout
+                HorizontalOptions="Center">
+                <Button
+                    x:Name="sendButton"
+                    Text="Send"
+                    Clicked="OnSendEvent"
+                    HorizontalOptions="Center"/>
+
+                <Button
+                    x:Name="cancelButton"
+                    Text="Cancel"
+                    Clicked="OnCancel"
+                    HorizontalOptions="Center"/>
+            </HorizontalStackLayout>
+
+            <Label
+                x:Name="confirmationLabel"
+                IsVisible="false" />
+
         </VerticalStackLayout>
     </ScrollView>
 
