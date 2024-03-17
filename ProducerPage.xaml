@@ -25,14 +25,40 @@
             <Label
                 Text="Content Type"/>
 
-            <Picker x:Name="contentTypePicker"
-                    />
+            <Picker x:Name="contentTypePicker"/>
 
             <Label
                 Text="Partition Key"/>
-            
+
             <Entry x:Name="partitionKeyInput"
                 Placeholder="Enter text"/>
+            <Label
+                Text="Properties"/>
+
+            <ListView
+                x:Name="propertiesDisplayList">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <TextCell 
+                            Text="{Binding Key}"
+                            Detail="{Binding Value}" />
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+            <HorizontalStackLayout
+                HorizontalOptions="Center">
+                <Entry 
+                    x:Name="propertyKeyEntry"
+                    Placeholder="key"/>
+                <Entry 
+                    x:Name="propertyValueEntry"
+                    Placeholder="value"/>
+                <Button 
+                    x:Name="addPropButton"
+                    Clicked="OnAddProperty"
+                    Text="+"/>
+            </HorizontalStackLayout>
 
             <!--https://learn.microsoft.com/en-us/dotnet/maui/user-interface/layouts/verticalstacklayout?view=net-maui-8.0#nest-verticalstacklayout-objects-->
             <HorizontalStackLayout
