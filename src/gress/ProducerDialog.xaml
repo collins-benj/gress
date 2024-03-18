@@ -6,13 +6,13 @@
                x:Class="gress.ProducerDialogPopup">
 
     <VerticalStackLayout>
-        <Label Text="This is a very important message!" />
+        <Label Text="Enter Event Hub Connection Info" />
 
         <Entry x:Name="connectionString"
-            Placeholder="connection string"/>
+            Placeholder="Connection String"/>
 
         <Entry x:Name="hubName"
-            Placeholder="hub name"/>
+            Placeholder="Hub Name"/>
 
         <Button Text="OK" 
         Clicked="OnOKButtonClicked" />

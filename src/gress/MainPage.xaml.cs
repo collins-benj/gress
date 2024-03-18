@@ -1,4 +1,6 @@
-﻿using Azure.Messaging.EventHubs.Producer;
+﻿using Azure.Core;
+using Azure.Identity;
+using Azure.Messaging.EventHubs.Producer;
 using CommunityToolkit.Maui.Alerts;
 using CommunityToolkit.Maui.Core.Views;
 using CommunityToolkit.Maui.Views;
@@ -16,7 +18,7 @@ namespace gress
         private async void OnStartProducer(object sender, EventArgs e)
         {
 
-            var producerDialog = new ProducerDialogPopup();
+            var producerDialog = new ProducerDialogPopup(useAzureCred.IsChecked);
 
             var result = (ProducerDialogPopupResult) await this.ShowPopupAsync(
                 producerDialog,
@@ -28,12 +30,26 @@ namespace gress
 
             try
             {
+                EventHubProducerClient client;
+                if (useAzureCred.IsChecked)
+                {
+                    client = new EventHubProducerClient(
+                        result.ConnectionStringOrNamespace,
+                        result.HubName,
+                        new DefaultAzureCredential()
+                    );
+                }
+                else
+                {
+                    client = new EventHubProducerClient(
+                        result.ConnectionStringOrNamespace,
+                        result.HubName
+                    );
+                }
+
                 await Navigation.PushAsync(
                     new ProducerPage(
-                        new EventHubProducerClient(
-                            result.ConnectionString,
-                            result.HubName
-                        )
+                        client
                     )
                 );
             }

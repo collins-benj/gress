@@ -4,9 +4,14 @@ namespace gress;
 
 public partial class ProducerDialogPopup : Popup
 {
-	public ProducerDialogPopup()
+	public ProducerDialogPopup(
+        bool forAzureCredential    
+    )
 	{
 		InitializeComponent();
+
+        // really don't want to make 2 of these if this is the only diff
+        if (forAzureCredential) this.connectionString.Placeholder = "FQ Namespace";
 	}
 
 	async void OnOKButtonClicked(object? sender, EventArgs e)
@@ -27,6 +32,6 @@ public partial class ProducerDialogPopup : Popup
 }
 
 public record ProducerDialogPopupResult(
-  string ConnectionString,
+  string ConnectionStringOrNamespace,
   string HubName
 );

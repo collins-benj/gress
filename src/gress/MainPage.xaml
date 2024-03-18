@@ -14,12 +14,22 @@
                 Style="{StaticResource Headline}"
                 SemanticProperties.HeadingLevel="Level1" />-->
 
+            <HorizontalStackLayout>
+                <Label Text="Use Azure Credential: "/>
+                <CheckBox 
+                    x:Name="useAzureCred"
+                    IsChecked="False"
+                    />
+            </HorizontalStackLayout>
+
+
             <Button
                 x:Name="SendButton"
                 Text="Send Events" 
                 SemanticProperties.Hint="Starts EventHub Producer"
                 Clicked="OnStartProducer"
                 HorizontalOptions="Center" />
+
         </VerticalStackLayout>
     </ScrollView>
 
